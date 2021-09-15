@@ -1,0 +1,10 @@
+{
+    "board": "SIPEED_LONGAN_NANO",
+    "bootloader": "gd32v-dfu",
+    "processor": "GD32VF103",
+    "usb": {
+        "shared_endpoint": {
+            "keyboard": true
+        }
+    }
+}
