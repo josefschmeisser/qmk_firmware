@@ -46,9 +46,12 @@
     { A4 }
 
 /* SPLIT CONFIG */
+/* see: https://docs.qmk.fm/#/feature_split_keyboard?id=custom-data-sync */
 #define SPLIT_HAND_PIN C13
 #define SPLIT_PLUG_DETECT_PIN A5 // TODO use A9 in next revision
 #define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE // sync caps lock etc.
+//#define SPLIT_OLED_ENABLE // sync OLED state (on, off)
 #define FORCED_SYNC_THROTTLE_MS 500
 
 /* CRC DRIVER */
