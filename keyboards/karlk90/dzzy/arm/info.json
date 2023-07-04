@@ -1,0 +1,5 @@
+{
+    "board": "GENERIC_STM32_F303XC",
+    "bootloader": "stm32-dfu",
+    "processor": "STM32F303"
+}

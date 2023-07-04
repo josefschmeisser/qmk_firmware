@@ -3,7 +3,7 @@
 
 #pragma once
 
-#define CH_CFG_ST_RESOLUTION 16
-#define CH_CFG_ST_FREQUENCY 10000
+#include_next <mcuconf.h>
 
-#include_next <chconf.h>
+#undef GD32_SPI_USE_SPI1
+#define GD32_SPI_USE_SPI1 TRUE

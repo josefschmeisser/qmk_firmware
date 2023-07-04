@@ -138,7 +138,7 @@
             {"matrix": [5, 5], "x": 196, "y": 4, "flags": 4},
             {"matrix": [5, 6], "x": 210, "y": 10, "flags": 4},
             {"matrix": [5, 7], "x": 224, "y": 11, "flags": 4}
-        ],
+        ]
     },
     "split": {
         "enabled": true,
