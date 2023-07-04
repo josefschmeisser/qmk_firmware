@@ -20,39 +20,39 @@ void keyboard_post_init_user(void) {
 static const pin_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
 static const pin_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
 
-void matrix_init_custom(void) {
+void matrix_init_pins(void) {
     for (size_t i = 0; i < MATRIX_COLS; i++) {
         setPinInputLow(col_pins[i]);
     }
     for (size_t i = 0; i < MATRIX_ROWS; i++) {
-        setPinOutput(row_pins[i]);
+/* We deliberatly choose "slower" push pull pins,
+ * those are fast enough but with lower driving currents
+ * should produce less EMI noise on the lines. */
+#if defined(__riscv)
+        /* This is actually implemented as a 2MHZ PP output. */
+        palSetLineMode(row_pins[i], PAL_MODE_UNCONNECTED);
+#else
+        palSetLineMode(row_pins[i], (PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_LOWEST));
+#endif
         writePinLow(row_pins[i]);
     }
 }
 
-bool matrix_scan_custom(matrix_row_t current_matrix[]) {
-    matrix_row_t raw_matrix[MATRIX_ROWS];
+void matrix_read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row) {
+    writePinHigh(row_pins[current_row]);
+    while (readPin(row_pins[current_row]) != 1)
+        ;
 
-    for (size_t row_idx = 0; row_idx < MATRIX_ROWS; row_idx++) {
-        writePinHigh(row_pins[row_idx]);
-        while (readPin(row_pins[row_idx]) != 1)
-            ;
+    current_matrix[current_row] = (matrix_row_t)palReadGroup(GPIOA, 0x3F, 0);
 
-        raw_matrix[row_idx] = (matrix_row_t)palReadGroup(GPIOA, 0x3F, 0);
+    writePinLow(row_pins[current_row]);
 
-        writePinLow(row_pins[row_idx]);
-
-        /* Wait until col pins are low again. */
-        size_t counter = 0xFF;
-        while ((palReadGroup(GPIOA, 0x3F, 0) != 0) && counter != 0) {
-            counter--;
+    /* Wait until col pins are high again or timer expired. */
+    rtcnt_t start = chSysGetRealtimeCounterX();
+    rtcnt_t end   = start + MS2RTC(REALTIME_COUNTER_CLOCK, 5);
+    while (chSysIsCounterWithinX(chSysGetRealtimeCounterX(), start, end)) {
+        if (palReadGroup(GPIOA, 0x3F, 0) == 0) {
+            break;
         }
     }
-
-    if (memcmp(current_matrix, raw_matrix, sizeof(raw_matrix)) != 0) {
-        memcpy(current_matrix, raw_matrix, sizeof(raw_matrix));
-        return true;
-    }
-
-    return false;
 }

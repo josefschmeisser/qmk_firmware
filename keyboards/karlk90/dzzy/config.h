@@ -3,8 +3,5 @@
 
 #pragma once
 
-/* USB CONFIG */
-#define FORCE_NKRO
-
 /* SPI DRIVER */
 #define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN B12
