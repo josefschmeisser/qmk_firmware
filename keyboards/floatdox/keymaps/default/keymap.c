@@ -2,9 +2,8 @@
 
 enum Layers {
     _BASE = 0,
-    _SYM  = 1,
-    _FN   = 2,
-    _NAV  = 3
+    _FN   = 1,
+    _NAV  = 2
 };
 
 enum Encoder {
@@ -16,32 +15,25 @@ enum Encoder {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT( \
-    KC_ESC         , KC_1          , KC_2          , KC_3          , KC_4          , KC_5          , KC_6          ,                                 KC_7          , KC_8          , KC_9          , KC_0          , KC_MINS       , KC_EQL        , KC_BSPC       , \
-    LT(2, KC_TAB)  , KC_Q          , KC_W          , KC_E          , KC_R          , KC_T          , KC_LBRC       ,                                 KC_RBRC       , KC_Y          , KC_U          , KC_I          , KC_O          , KC_P          , LT(2, KC_BSLS), \
-    KC_LCTL        , KC_A          , KC_S          , KC_D          , KC_F          , KC_G          , LT(1, KC_GRV) , KC_MUTE       , KC_MPLY       , LT(1, KC_QUOT), KC_H          , KC_J          , KC_K          , KC_L          , KC_SCLN       , KC_ENT        , \
-    KC_LSFT        , KC_Z          , KC_X          , KC_C          , KC_V          , KC_B          , KC_HOME       , KC_END        , KC_PGDN       , KC_PGUP       , KC_N          , KC_M          , KC_COMM       , KC_DOT        ,RALT_T(KC_SLSH), KC_RSFT       , \
-    KC_CAPS        , KC_LGUI       , KC_LALT       , TT(2)         , TT(3)                         , KC_SPC        , LT(3, KC_ESC) , LT(3, KC_DEL) , KC_SPC                        , KC_LEFT       , KC_DOWN       , KC_UP         , KC_RGHT       , KC_RCTL         \
-  ),
-  [_SYM] = LAYOUT( \
-    _______        , _______       , _______       , _______       , _______       , _______       , _______       ,                                 _______       , _______       , _______       , _______       , _______       , _______       , _______       , \
-    KC_TAB         , _______       , _______       , RALT(KC_5)    , _______       , _______       , _______       ,                                 _______       , _______       , RALT(KC_Y)    , _______       , RALT(KC_P)    , _______       , KC_BSLS       , \
-    _______        , RALT(KC_Q)    , RALT(KC_S)    , _______       , _______       , _______       , KC_GRV        , KC_MUTE       , KC_MPLY       , KC_QUOT       , _______       , _______       , _______       , _______       , _______       , _______       , \
-    _______        , _______       , _______       , _______       , _______       , _______       , _______       , _______       , _______       , _______       , _______       , RALT(KC_M)    , _______       , _______       , KC_SLSH       , _______       , \
-    _______        , _______       , _______       , _______       , _______                       , _______       , KC_LSFT       , KC_RSFT       , _______                       , _______       , _______       , _______       , _______       , _______         \
+    KC_ESC         , KC_1          , KC_2          , KC_3          , KC_4          , KC_5          , KC_6          ,                                 KC_7          , KC_8          , KC_9          , KC_0          , KC_MINS       , KC_EQL        , KC_BSPC        , \
+    RALT_T(KC_TAB) , KC_Q          , KC_W          , KC_E          , KC_R          , KC_T          , KC_LBRC       ,                                 KC_RBRC       , KC_Y          , KC_U          , KC_I          , KC_O          , KC_P          , RALT_T(KC_BSLS), \
+    KC_CAPS        , KC_A          , KC_S          , KC_D          , KC_F          , KC_G          , LT(1, KC_GRV) , KC_MUTE       , KC_MPLY       , LT(1, KC_QUOT), KC_H          , KC_J          , KC_K          , KC_L          , KC_SCLN       , KC_ENT         , \
+    KC_LSFT        , KC_Z          , KC_X          , KC_C          , KC_V          , KC_B          , KC_HOME       , KC_END        , KC_PGDN       , KC_PGUP       , KC_N          , KC_M          , KC_COMM       , KC_DOT        ,RALT_T(KC_SLSH), KC_RSFT        , \
+    KC_LCTL        , KC_LGUI       , KC_LALT       , TT(1)         , TT(2)                         , KC_SPC        , LT(2, KC_ESC) , LT(2, KC_DEL) , KC_SPC                        , KC_LEFT       , KC_DOWN       , KC_UP         , KC_RGHT       , KC_RCTL          \
   ),
   [_FN] = LAYOUT( \
-    _______        , KC_F1         , KC_F2         , KC_F3         , KC_F4         , KC_F5         , KC_F6         ,                                 KC_F7         , KC_F8         , KC_F9         , KC_F10        , KC_F11        , KC_F12        , _______       , \
-    KC_NO          , CL_SWAP       , CL_NORM       , KC_NO         , KC_NO         , KC_NO         , KC_NO         ,                                 KC_NO         , KC_NUMLOCK    , KC_KP_7       , KC_KP_8       , KC_KP_9       , KC_PSLS       , KC_DEL        , \
-    _______        , KC_CAPS       , KC_SCROLLLOCK , KC_NO         , KC_NO         , KC_NO         , KC_NO         , RESET         , DEBUG         , KC_NO         , KC_PEQL       , KC_KP_4       , KC_KP_5       , KC_KP_6       , KC_PAST       , _______       , \
-    _______        , KC_NO         , KC_NO         , KC_APP        , KC_NO         , KC_NO         , KC_INS        , KC_DEL        , KC_PSCR       , KC_PAUS       , KC_NO         , KC_KP_1       , KC_KP_2       , KC_KP_3       , KC_PMNS       , _______       , \
-    _______        , _______       , _______       , _______       , _______                       , _______       , KC_NO         , KC_NO         , _______                       , _______       , _______       , _______       , _______       , _______         \
+    _______        , KC_F1         , KC_F2         , KC_F3         , KC_F4         , KC_F5         , KC_F6         ,                                 KC_F7         , KC_F8         , KC_F9         , KC_F10        , KC_F11        , KC_F12        , _______        , \
+    KC_NO          , CL_SWAP       , CL_NORM       , KC_NO         , KC_NO         , KC_NO         , KC_NO         ,                                 KC_NO         , KC_NUMLOCK    , KC_KP_7       , KC_KP_8       , KC_KP_9       , KC_PSLS       , KC_DEL         , \
+    _______        , KC_CAPS       , KC_SCROLLLOCK , KC_NO         , KC_NO         , KC_NO         , KC_NO         , RESET         , DEBUG         , KC_NO         , KC_PEQL       , KC_KP_4       , KC_KP_5       , KC_KP_6       , KC_PAST       , _______        , \
+    _______        , KC_NO         , KC_NO         , KC_APP        , KC_NO         , KC_NO         , KC_INS        , KC_DEL        , KC_PSCR       , KC_PAUS       , KC_NO         , KC_KP_1       , KC_KP_2       , KC_KP_3       , KC_PMNS       , _______        , \
+    _______        , _______       , _______       , _______       , _______                       , _______       , KC_NO         , KC_NO         , _______                       , _______       , _______       , _______       , _______       , _______          \
   ),
   [_NAV] = LAYOUT( \
-    _______        , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         ,                                 KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , \
-    KC_NO          , KC_NO         , KC_UP         , KC_NO         , KC_NO         , KC_NO         , KC_NO         ,                                 KC_NO         , KC_HOME       , KC_PGDN       , KC_PGUP       , KC_END        , KC_NO         , KC_NO         , \
-    _______        , KC_LEFT       , KC_DOWN       , KC_RGHT       , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_LEFT       , KC_DOWN       , KC_UP         , KC_RGHT       , KC_NO         , KC_NO         , \
-    _______        , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , _______       , \
-    _______        , _______       , _______       , _______       , _______                       , KC_NO         , KC_NO         , KC_NO         , KC_NO                         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , _______         \
+    _______        , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         ,                                 KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO          , \
+    KC_NO          , KC_NO         , KC_UP         , KC_NO         , KC_NO         , KC_NO         , KC_NO         ,                                 KC_NO         , KC_HOME       , KC_PGDN       , KC_PGUP       , KC_END        , KC_NO         , KC_NO          , \
+    _______        , KC_LEFT       , KC_DOWN       , KC_RGHT       , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_LEFT       , KC_DOWN       , KC_UP         , KC_RGHT       , KC_NO         , KC_NO          , \
+    _______        , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , _______        , \
+    _______        , _______       , _______       , _______       , _______                       , KC_NO         , KC_NO         , KC_NO         , KC_NO                         , KC_NO         , KC_NO         , KC_NO         , KC_NO         , _______          \
   )
 };
 
@@ -195,21 +187,6 @@ static void render_base_layer_indicator(void) {
     oled_write_raw_P(base_indicator, sizeof(base_indicator));
 }
 
-static void render_sym_layer_indicator(void) {
-    static const char PROGMEM sym_indicator[] = {
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0x8e,
-        0x06, 0x32, 0x72, 0x72, 0x72, 0xe6, 0xfe, 0xfe, 0xfa, 0xe2, 0x82, 0x0e, 0x3e, 0x3e, 0x0e, 0x82,
-        0xe2, 0xfa, 0xfe, 0x02, 0x02, 0x82, 0x1e, 0x1e, 0x82, 0x02, 0x02, 0xfe, 0xfe, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7f, 0x67,
-        0x4f, 0x4e, 0x4e, 0x4e, 0x4c, 0x60, 0x61, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x40, 0x40, 0x7f, 0x7f,
-        0x7f, 0x7f, 0x7f, 0x40, 0x40, 0x7f, 0x7c, 0x7c, 0x7f, 0x40, 0x40, 0x7f, 0x7f, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-    };
-
-    oled_write_raw_P(sym_indicator, sizeof(sym_indicator));
-}
-
 static void render_fn_layer_indicator(void) {
     static const char PROGMEM fn_indicator[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -273,10 +250,6 @@ void render_display(void) {
     switch (current_layer_state) {
         case _BASE:
             render_base_layer_indicator();
-            break;
-        case _SYM:
-            //oled_write_ln("  SYM", false);
-            render_sym_layer_indicator();
             break;
         case _FN:
             //oled_write_ln("  FN", false);
